@@ -64,6 +64,7 @@ namespace WebApiDemoFirst.Controllers
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
 
+        //Test commit 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductDetail()
         {
