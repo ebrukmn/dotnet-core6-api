@@ -29,4 +29,6 @@ public interface IGenericRepository<T> where T: class
     void Delete(T entity);
 
     void RemoveRange(IEnumerable<T> entities);
+
+    Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
 }

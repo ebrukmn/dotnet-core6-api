@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLayerCore.DTOs;
 using NLayerCore.Models;
 using NLayerCore.Services;
+using WebApiDemoFirst.Filters;
 
 namespace WebApiDemoFirst.Controllers
 {
@@ -33,6 +29,8 @@ namespace WebApiDemoFirst.Controllers
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productDtos));
         }
 
+        //Bir filter DI ile service inject ettiğinden dolayı attribute olarak değil ServiceFilter olarak eklenip kullanılır.
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -63,8 +61,7 @@ namespace WebApiDemoFirst.Controllers
             await _productService.DeleteAsync(toBeDeletedProduct);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
-
-        //Test commit 
+        
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductDetail()
         {

@@ -74,4 +74,9 @@ public class Service<T> : IService<T> where T : class
         _repository.RemoveRange(entities);
         await _unitOfWork.CommitAsync();
     }
+
+    public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+    {
+        return await _repository.AnyAsync(expression);
+    }
 }

@@ -20,4 +20,6 @@ public interface IService<T> where T : class
     Task DeleteAsync(T entity);
 
     Task RemoveRangeAsync(IEnumerable<T> entities);
+
+    Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
 }
