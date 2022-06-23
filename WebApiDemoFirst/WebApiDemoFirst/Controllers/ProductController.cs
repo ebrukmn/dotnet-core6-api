@@ -23,7 +23,7 @@ namespace WebApiDemoFirst.Controllers
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            var products = await _productService.GetAll();
+            var products = await _productService.GetAllAsync();
             var productDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productDtos));
         }

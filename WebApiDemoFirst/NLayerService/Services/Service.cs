@@ -29,7 +29,7 @@ public class Service<T> : IService<T> where T : class
         return result;
     }
 
-    public async Task<IEnumerable<T>> GetAll()
+    public async Task<IEnumerable<T>> GetAllAsync()
     {
         return await _repository.GetAll().ToListAsync();
     }
@@ -56,11 +56,10 @@ public class Service<T> : IService<T> where T : class
         return entities;
     }
 
-    public async Task<T> UpdateAsync(T entity)
+    public async Task UpdateAsync(T entity)
     { 
         _repository.Update(entity);
         await _unitOfWork.CommitAsync();
-        return entity;
     }
 
     public async Task DeleteAsync(T entity)

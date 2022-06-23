@@ -6,7 +6,7 @@ public interface IService<T> where T : class
 {
     Task<T> GetByIdAsync(int id);
 
-    Task<IEnumerable<T>> GetAll();
+    Task<IEnumerable<T>> GetAllAsync();
     
     IQueryable<T> Where(Expression<Func<T, bool>> expression);
 
@@ -15,7 +15,7 @@ public interface IService<T> where T : class
     Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
     
     //EF Core'un update ve remove için async versiyonu yok fakat servis versiyonunda async kullanacağız.
-    Task<T> UpdateAsync(T entity);
+    Task UpdateAsync(T entity);
     
     Task DeleteAsync(T entity);
 
