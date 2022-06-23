@@ -25,7 +25,6 @@ namespace WebApiDemoFirst.Controllers
         {
             var products = await _productService.GetAll();
             var productDtos = _mapper.Map<List<ProductDto>>(products.ToList());
-            //return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productDtos));/
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productDtos));
         }
 
